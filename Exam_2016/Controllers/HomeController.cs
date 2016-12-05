@@ -22,6 +22,7 @@ namespace Exam_2016.Controllers
 
         public ActionResult Contact()
         {
+            //Hi from John
             ViewBag.Message = "Your contact page.";
 
             return View();
