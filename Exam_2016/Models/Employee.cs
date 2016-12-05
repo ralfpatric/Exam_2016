@@ -7,6 +7,7 @@ namespace Exam_2016.Models
 {
     public class Employee
     {
+        //No longer in use - check IdentityModels.cs - kept for historical purposes -- John
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
