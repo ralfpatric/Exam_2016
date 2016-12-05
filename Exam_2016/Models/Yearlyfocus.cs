@@ -8,7 +8,7 @@ namespace Exam_2016.Models
     public class Yearlyfocus
     {
         public int YearlyfocusId { get; set; }
-        // comment test
+
         public int Year { get; set; }
 
         public int EmployeeId { get; set; }
