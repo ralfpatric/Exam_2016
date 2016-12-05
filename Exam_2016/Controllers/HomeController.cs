@@ -25,6 +25,7 @@ namespace Exam_2016.Controllers
             //Hi from John
             //Hi from Thao
             //Hi from Ralf
+            //Hi from Nadia
             ViewBag.Message = "Your contact page.";
 
             return View();
