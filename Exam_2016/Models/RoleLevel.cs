@@ -11,7 +11,7 @@ namespace Exam_2016.Models
         public int RoleId { get; set; }
         public string Level { get; set; }
         public int Year { get; set; }
-        IEnumerable<Achievement> Achievement { get; set; }
+        IEnumerable<Achievement> Achievements { get; set; }
 
     }
 }
