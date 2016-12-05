@@ -23,6 +23,7 @@ namespace Exam_2016.Controllers
         public ActionResult Contact()
         {
             //Hi from John
+            //Hi from Thao
             ViewBag.Message = "Your contact page.";
 
             return View();
