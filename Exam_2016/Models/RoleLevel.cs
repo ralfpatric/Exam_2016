@@ -12,6 +12,5 @@ namespace Exam_2016.Models
         public string Level { get; set; }
         public int Year { get; set; }
         public IEnumerable<Achievement> Achievements { get; set; }
-
     }
 }
