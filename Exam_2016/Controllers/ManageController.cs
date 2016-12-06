@@ -74,7 +74,14 @@ namespace Exam_2016.Controllers
             };
             return View(model);
         }
+        // GET: /Manage/UserDetail
+        public ActionResult UserDetail()
+        {
 
+            ViewBag.Message = "Your User Detail Page.";
+
+            return View();
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
