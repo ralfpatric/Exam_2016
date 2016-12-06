@@ -14,9 +14,9 @@ namespace Exam_2016.Models
         public string Position { get; set; }
         public int Score { get; set; }
         public string ProfilePicture { get; set; }
-        public IEnumerable<Role> PastRoles { get; set; }
-        public IEnumerable<Role> CurrentRoles { get; set; }
-        public IEnumerable<Role> FutureRoles { get; set; }
+        public IEnumerable<CompanyRole> PastRoles { get; set; }
+        public IEnumerable<CompanyRole> CurrentRoles { get; set; }
+        public IEnumerable<CompanyRole> FutureRoles { get; set; }
         public IEnumerable<Achievement> AchievementsEarned { get; set; }
     }
 }

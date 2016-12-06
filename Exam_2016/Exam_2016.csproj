@@ -193,7 +193,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\CompanyRole.cs" />
     <Compile Include="Models\RoleLevel.cs" />
     <Compile Include="Models\Yearlyfocus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

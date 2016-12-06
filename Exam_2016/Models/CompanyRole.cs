@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Exam_2016.Models
 {
-    public class Role
+    public class CompanyRole
     {
         public int RoleId { get; set; }
         public int CompanyId { get; set; }

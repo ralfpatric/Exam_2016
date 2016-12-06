@@ -13,6 +13,6 @@ namespace Exam_2016.Models
 
         public int EmployeeId { get; set; }
 
-        public IEnumerable<Role> Roles { get; set; }
+        public IEnumerable<CompanyRole> Roles { get; set; }
     }
 }
