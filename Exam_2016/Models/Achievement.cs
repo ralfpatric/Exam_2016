@@ -18,5 +18,7 @@ namespace Exam_2016.Models
         public bool Approved { get; set; }
 
         public int RoleId { get; set; }
+
+        // COMMENT FOR TEST
     }
 }

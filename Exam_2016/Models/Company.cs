@@ -14,5 +14,6 @@ namespace Exam_2016.Models
         [Required]
         public string Name { get; set; }
         public string Logo { get; set; }
+        public string NextYearlyInterview { get; set; }
     }
 }

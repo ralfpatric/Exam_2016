@@ -26,9 +26,9 @@ namespace Exam_2016.Models
         public string ProfilePicture { get; set; }
         public IEnumerable<Role> PastRoles { get; set; }
         public IEnumerable<Role> CurrentRoles { get; set; }
-        public IEnumerable<Role> FutureRoles { get; set; }
+        public IEnumerable<Role> FutureRoles { get; set; } //max 3
         public IEnumerable<Achievement> AchievementsEarned { get; set; }
-        public string NextYearlyInterview { get; set; }
+        
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

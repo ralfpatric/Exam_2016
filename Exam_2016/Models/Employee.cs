@@ -20,7 +20,7 @@ namespace Exam_2016.Models
         public IEnumerable<Role> CurrentRoles { get; set; }
         public IEnumerable<Role> FutureRoles { get; set; }
         public IEnumerable<Achievement> AchievementsEarned { get; set; }
-        public string NextYearlyInterview { get; set; }
+        
 
     }
 }
