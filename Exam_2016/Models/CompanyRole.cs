@@ -8,7 +8,7 @@ namespace Exam_2016.Models
 {
     public class CompanyRole
     {
-        public int RoleId { get; set; }
+        public int CompanyRoleId { get; set; }
         public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

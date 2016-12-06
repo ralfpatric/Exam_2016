@@ -30,5 +30,13 @@ namespace Exam_2016.Models
         {
             return new ApplicationDbContext();
         }
+
+        //Add DBSets here
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyRole> CompanyRoles { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<RoleLevel> RoleLevels { get; set; }
+        public DbSet<Yearlyfocus> YearlyFoci { get; set; }
     }
 }

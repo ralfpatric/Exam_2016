@@ -17,8 +17,8 @@ namespace Exam_2016.Controllers
         // GET: Roles
         public ActionResult Index()
         {
-            //IEnumerable<Role> roles = (IEnumerable<Role>)db.Roles.ToList();
-            return View();
+            IEnumerable<CompanyRole> roles = db.CompanyRoles.ToList();
+            return View(roles);
         }
 
         // GET: Roles/Details/5

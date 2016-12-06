@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Exam_2016.Models.CompanyRole>
 
 @{
     ViewBag.Title = "Index";
@@ -6,3 +6,46 @@
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyRoleId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyRoleId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyRoleId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyRoleId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyRoleId })
+            </td>
+        </tr>
+    }
+
+</table>
