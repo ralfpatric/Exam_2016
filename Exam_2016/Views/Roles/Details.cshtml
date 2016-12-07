@@ -1,4 +1,4 @@
-﻿@model Exam_2016.Models.CompanyRole
+﻿@model IEnumerable<Exam_2016.Models.CompanyRole>
 
 @{
     ViewBag.Title = "Details";
@@ -6,7 +6,9 @@
 
 
 
-<h2>Index</h2>
+<h2>Role Details</h2>
+
+<h4>Employee Experience with Role</h4>
 
 <table class="table">
     <tr>
@@ -17,28 +19,79 @@
             Employee Experience
         </th>
     </tr>
-        @foreach (var item in Model.Employees)
+    @if (Model != null)
+    {
+        foreach (var itemi in Model)
+        {
+            foreach (var item in itemi.Employees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    @foreach (var itemj in item.PastRoles)
+                    {
+                        if (itemj.CompanyRoleId == itemi.CompanyRoleId)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => itemj.Name)
+                            </td>
+                        }
+                    }
+                    @foreach (var itemj in item.CurrentRoles)
+                    {
+                        if (itemj.CompanyRoleId == itemi.CompanyRoleId)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => itemj.Name)
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                No Experience
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    }
+
+</table>
+
+@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { id = ViewBag.RoleId }) |
+@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { id = ViewBag.RoleId }) |
+@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { id = ViewBag.RoleId })
+
+<h4>Role Curriculum</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Curriculum Text
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                @foreach (var itemj in item.PastRoles)
+                @foreach (var itemi in item.Curriculum)
                 {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            No Experience
-                        </td>
-                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => itemi)
+                    </td>
+                    <td>
+                        @Html.ActionLink("wut", "Edit", new { id = item.CompanyRoleId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CompanyRoleId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CompanyRoleId })
+                    </td>
                 }
             </tr>
         }
-
+    }
 </table>
