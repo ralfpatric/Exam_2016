@@ -79,7 +79,9 @@ namespace Exam_2016.Controllers
         // GET: /Manage/UserDetail
         public ActionResult UserDetail()
         {
-            return View();
+            var CurrentUserId = User.Identity.GetUserId();
+            Employee employee = db.Employees.Find(CurrentUserId);
+            return View(employee);
         }
         //
         // POST: /Manage/RemoveLogin
