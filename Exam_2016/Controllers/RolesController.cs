@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Exam_2016.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace Exam_2016.Controllers
 {
@@ -48,6 +50,16 @@ namespace Exam_2016.Controllers
             }
 
             return View(role);
+        }
+
+        public ActionResult Create()
+        {
+            var uid = User.Identity.GetUserId();
+
+            Employee e = db.Employees.Find(uid);
+            ViewBag.CurrentCompanyId = e.CompanyId;
+
+            return View();
         }
 
         public ActionResult AddToPastRoles(int? RoleId)
