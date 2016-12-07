@@ -14,6 +14,17 @@ namespace Exam_2016.Models
         public bool BrowserRemembered { get; set; }
     }
 
+    public class SaveChangesViewModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+        public string Position { get; set; }
+        public int Score { get; set; }
+        public string ProfilePicture { get; set; }
+
+    }
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
