@@ -13,7 +13,7 @@ namespace Exam_2016.Models
     {
 
         public int CompanyId { get; set; }
-        public IEnumerable<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
         public IEnumerable<CompanyRole> Roles { get; set; }
         [Required]
         public string Name { get; set; }
@@ -25,7 +25,8 @@ namespace Exam_2016.Models
         public Company()
         {
             this.Admins = new List<string>();
-         
+            this.Employees = new List<Employee>();
+            this.Roles = new List<CompanyRole>();
         }
     }
 }
