@@ -7,7 +7,7 @@ namespace Exam_2016.Models
 {
     public class Employee : ApplicationUser
     {
-        public int EmployeeId { get; set; }
+        public int EmployeeId { get; set; } // this is being ignored atm
         public int CompanyId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

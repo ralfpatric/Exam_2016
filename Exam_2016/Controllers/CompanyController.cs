@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Exam_2016.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Exam_2016.Controllers
 {
@@ -50,8 +51,16 @@ namespace Exam_2016.Controllers
         {
             if (ModelState.IsValid)
             {
+                var CurrentUserId = User.Identity.GetUserId();
+                company.Admins.Add(CurrentUserId);
                 db.Companies.Add(company);
                 db.SaveChanges();
+
+                Employee employee = db.Employees.Find(CurrentUserId);
+                employee.CompanyId = company.CompanyId;
+                this.db.SaveChanges();
+
+
                 return RedirectToAction("Index");
             }
             ViewBag.CurrentCompanyId = company.CompanyId;
