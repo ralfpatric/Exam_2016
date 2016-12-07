@@ -97,6 +97,7 @@ namespace Exam_2016.Controllers
                 employee.Position = model.Position;
                 employee.Score = model.Score;
                 employee.ProfilePicture = model.ProfilePicture;
+                this.db.SaveChanges();
             }
 
                 return View("UserDetail");
