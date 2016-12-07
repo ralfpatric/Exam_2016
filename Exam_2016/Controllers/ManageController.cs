@@ -13,6 +13,8 @@ namespace Exam_2016.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -77,10 +79,9 @@ namespace Exam_2016.Controllers
         // GET: /Manage/UserDetail
         public ActionResult UserDetail()
         {
-
-            ViewBag.Message = "Your User Detail Page.";
-
-            return View();
+            var CurrentUserId = User.Identity.GetUserId();
+            Employee employee = db.Employees.Find(CurrentUserId);
+            return View(employee);
         }
         //
         // POST: /Manage/RemoveLogin
