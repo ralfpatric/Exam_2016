@@ -1,42 +1,44 @@
-﻿@model Exam_2016.Models.Role
+﻿@model Exam_2016.Models.CompanyRole
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Role</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyId)
-        </dd>
+<h2>Index</h2>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<table class="table">
+    <tr>
+        <th>
+            Employee Name
+        </th>
+        <th>
+            Employee Experience
+        </th>
+    </tr>
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                @foreach (var itemj in item.PastRoles)
+                {
+                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => itemj.Name)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            No Experience
+                        </td>
+                    }
+                }
+            </tr>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RoleId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</table>
