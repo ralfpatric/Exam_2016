@@ -37,19 +37,17 @@ namespace Exam_2016.Controllers
         // GET: Roles/Details/5
         public ActionResult Details(int? RoleId)
         {
-            IEnumerable<CompanyRole> role;
+            CompanyRole role;
             if (RoleId == null)
             {
-                ViewBag.RoleId = RoleId;
-                role = null;
+                role = db.CompanyRoles.Find(1);
+                return View(role);
             }
             else
             {
-                ViewBag.RoleId = RoleId;
-                role = db.CompanyRoles.ToList().FindAll(i => i.CompanyRoleId == RoleId);
+                role = db.CompanyRoles.Find(RoleId);
+                return View(role);
             }
-
-            return View(role);
         }
 
         public ActionResult Create()
@@ -119,6 +117,8 @@ namespace Exam_2016.Controllers
         public ActionResult AddCurriculum(int RoleId, string Curriculum)
         {
             CompanyRole cr = db.CompanyRoles.Find(RoleId);
+            cr.Curriculum.Add(Curriculum);
+            db.SaveChanges();
 
             return RedirectToAction("Details", RoleId);
         }
