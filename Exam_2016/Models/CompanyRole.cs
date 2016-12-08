@@ -12,8 +12,8 @@ namespace Exam_2016.Models
         public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public IEnumerable<Employee> Employees { get; set; }
-        public IEnumerable<String> Curriculum { get; set; }
-        public IEnumerable<Achievement> Achievements { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<String> Curriculum { get; set; }
+        public virtual ICollection<Achievement> Achievements { get; set; }
     }
 }

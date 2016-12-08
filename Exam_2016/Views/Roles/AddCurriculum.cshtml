@@ -1,18 +1,19 @@
 ﻿@model Exam_2016.Models.CompanyRole
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "AddCurriculum";
 }
 
-<h2>Create</h2>
+<h2>AddCurriculum</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>CompanyRole</h4>
         <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
