@@ -13,13 +13,13 @@ namespace Exam_2016.Models
     {
 
         public int CompanyId { get; set; }
-        public List<Employee> Employees { get; set; }
-        public IEnumerable<CompanyRole> Roles { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<CompanyRole> Roles { get; set; }
         [Required]
         public string Name { get; set; }
         public string Logo { get; set; }
         public string NextYearlyInterview { get; set; }
-        public List<string> Admins { get; set; } // when user creates a company he is added into this list
+        public virtual ICollection<string> Admins { get; set; } // when user creates a company he is added into this list
 
         //constructor
         public Company()
