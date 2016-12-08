@@ -6,7 +6,7 @@
 
 <h2>Index</h2>
 
-@if (Model.CurrentEmployee.CompanyId == 0)
+@if (Model.CurrentEmployee.CompanyId == 0 || Model.CurrentEmployee.CompanyId == null)
 {
     <p>
          @Html.ActionLink("Create New", "Create")
