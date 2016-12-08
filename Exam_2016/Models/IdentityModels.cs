@@ -37,6 +37,6 @@ namespace Exam_2016.Models
         public DbSet<CompanyRole> CompanyRoles { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<RoleLevel> RoleLevels { get; set; }
-        public DbSet<Yearlyfocus> YearlyFoci { get; set; }
+        public DbSet<Yearlyfocus> YearlyFocus { get; set; }
     }
 }
