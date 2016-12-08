@@ -9,8 +9,8 @@ namespace Exam_2016.Models
     public class Company
     {
         public int CompanyId { get; set; }
-        public IEnumerable<Employee> Employees { get; set; }
-        public IEnumerable<CompanyRole> Roles { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<CompanyRole> Roles { get; set; }
         [Required]
         public string Name { get; set; }
         public string Logo { get; set; }

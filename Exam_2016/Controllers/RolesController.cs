@@ -54,12 +54,21 @@ namespace Exam_2016.Controllers
 
         public ActionResult Create()
         {
-            var uid = User.Identity.GetUserId();
-
-            Employee e = db.Employees.Find(uid);
-            ViewBag.CurrentCompanyId = e.CompanyId;
-
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "CompanyId,Name,Description")] CompanyRole cr)
+        {
+            if (ModelState.IsValid)
+            {
+                db.CompanyRoles.Add(cr);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(cr);
         }
 
         public ActionResult AddToPastRoles(int? RoleId)
@@ -69,8 +78,8 @@ namespace Exam_2016.Controllers
                 string sid = User.Identity.GetUserId();
 
                 Employee e = db.Employees.Find(sid);
-                IEnumerable<CompanyRole> cr = (IEnumerable<CompanyRole>)db.CompanyRoles.Find(RoleId);
-                e.PastRoles = e.PastRoles.Concat(cr);
+                CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
+                e.PastRoles.Add(cr);
                 db.SaveChanges();
             }
 
@@ -84,8 +93,8 @@ namespace Exam_2016.Controllers
                 string sid = User.Identity.GetUserId();
 
                 Employee e = db.Employees.Find(sid);
-                IEnumerable<CompanyRole> cr = (IEnumerable<CompanyRole>)db.CompanyRoles.Find(RoleId);
-                e.CurrentRoles = e.CurrentRoles.Concat(cr);
+                CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
+                e.CurrentRoles.Add(cr);
                 db.SaveChanges();
             }
 
@@ -99,10 +108,17 @@ namespace Exam_2016.Controllers
                 string sid = User.Identity.GetUserId();
 
                 Employee e = db.Employees.Find(sid);
-                IEnumerable<CompanyRole> cr = (IEnumerable<CompanyRole>)db.CompanyRoles.Find(RoleId);
-                e.FutureRoles = e.FutureRoles.Concat(cr);
+                CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
+                e.FutureRoles.Add(cr);
                 db.SaveChanges();
             }
+
+            return RedirectToAction("Details", RoleId);
+        }
+
+        public ActionResult AddCurriculum(int RoleId, string Curriculum)
+        {
+            CompanyRole cr = db.CompanyRoles.Find(RoleId);
 
             return RedirectToAction("Details", RoleId);
         }
