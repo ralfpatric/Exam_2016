@@ -57,16 +57,25 @@ namespace Exam_2016.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,Description")] CompanyRole cr)
+        public ActionResult Create([Bind(Include = "Name,Description")] CompanyRole cr)
         {
             if (ModelState.IsValid)
             {
-                db.CompanyRoles.Add(cr);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string uid = User.Identity.GetUserId();
+                Employee e = db.Employees.Find(uid);
+                if (e.CompanyId != null)
+                {
+                    int cid = (int)e.CompanyId;
+                    cr.CompanyId = cid;
+                    db.CompanyRoles.Add(cr);
+                    Company c = db.Companies.Find(cid);
+                    c.Roles.Add(cr);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
-            return View(cr);
+            return View("Error: You must be in a company to add a role (to a company).");
         }
 
         public ActionResult AddToPastRoles(int? RoleId)
@@ -78,6 +87,7 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
                 e.PastRoles.Add(cr);
+                cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
@@ -93,6 +103,7 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
                 e.CurrentRoles.Add(cr);
+                cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
@@ -108,16 +119,20 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
                 e.FutureRoles.Add(cr);
+                cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
             return RedirectToAction("Details", RoleId);
         }
 
+        [HttpPost]
         public ActionResult AddCurriculum(int RoleId, string Curriculum)
         {
             CompanyRole cr = db.CompanyRoles.Find(RoleId);
-            cr.Curriculum.Add(Curriculum);
+            Curriculum c = new Curriculum();
+            c.CurriculumContent = Curriculum;
+            cr.Curriculum.Add(c);
             db.SaveChanges();
 
             return RedirectToAction("Details", RoleId);

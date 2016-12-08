@@ -189,6 +189,7 @@
     <Compile Include="Models\Achievement.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
+    <Compile Include="Models\Curriculum.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
