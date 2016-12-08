@@ -8,11 +8,8 @@ namespace Exam_2016.Models
     public class Yearlyfocus
     {
         public int YearlyfocusId { get; set; }
-
         public int Year { get; set; }
-
         public int EmployeeId { get; set; }
-
-        public IEnumerable<CompanyRole> Roles { get; set; }
+        public virtual ICollection<CompanyRole> Roles { get; set; }
     }
 }

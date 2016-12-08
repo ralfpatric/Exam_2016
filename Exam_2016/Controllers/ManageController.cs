@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Exam_2016.Models;
+using System.Net;
 
 namespace Exam_2016.Controllers
 {
@@ -76,13 +77,22 @@ namespace Exam_2016.Controllers
             };
             return View(model);
         }
-        // GET: /Manage/UserDetail
-        public ActionResult UserDetail()
+        // GET: /Manage/EmployeeInfoEdit
+        public ActionResult EmployeeInfoEdit()
         {
             var CurrentUserId = User.Identity.GetUserId();
             Employee employee = db.Employees.Find(CurrentUserId);
             return View(employee);
         }
+
+        // GET: /Manage/EmployeeDetails 
+        public ActionResult EmployeeDetails(string id)
+        {
+            //var CurrentUserId = User.Identity.GetUserId();
+            Employee employee = db.Employees.Find(id);
+            return View(employee);
+        }
+        
 
         [HttpPost]
         public ActionResult SaveChanges(SaveChangesViewModel model)

@@ -95,3 +95,12 @@
         }
     }
 </table>
+
+<h2>Add Curriculum To This Role</h2>
+
+@using (Html.BeginForm("AddCurriculum", "Roles", FormMethod.Post))
+{
+    <input type="hidden" id="RoleId" name="RoleId" />
+    <input type="text" id="Curriculum" name="Curriculum" />
+    <input type="submit" value="Add Curriculum" />
+}
