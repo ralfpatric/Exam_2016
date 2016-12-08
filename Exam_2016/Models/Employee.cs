@@ -14,7 +14,7 @@ namespace Exam_2016.Models
         public int Age { get; set; }
         public string Position { get; set; }
         public int Score { get; set; }
-        public string ProfilePicture { get; set; }
+        public byte[] ProfilePicture { get; set; }
         public virtual ICollection<CompanyRole> PastRoles { get; set; }
         public virtual ICollection<CompanyRole> CurrentRoles { get; set; }
         public virtual ICollection<CompanyRole> FutureRoles { get; set; }
