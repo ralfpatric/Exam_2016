@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Exam_2016.Models
 {
@@ -87,6 +88,8 @@ namespace Exam_2016.Models
         [DataType(DataType.Text)]
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
+
+        public HttpPostedFileBase ProfilePicture { get; set; }
 
     }
 
