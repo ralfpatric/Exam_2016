@@ -77,6 +77,7 @@ namespace Exam_2016.Controllers
             };
             return View(model);
         }
+
         // GET: /Manage/EmployeeInfoEdit
         public ActionResult EmployeeInfoEdit()
         {
@@ -85,14 +86,32 @@ namespace Exam_2016.Controllers
             return View(employee);
         }
 
-        // GET: /Manage/EmployeeDetails 
+        // GET: /Manage/EmployeeDetails/id
         public ActionResult EmployeeDetails(string id)
         {
             //var CurrentUserId = User.Identity.GetUserId();
             Employee employee = db.Employees.Find(id);
             return View(employee);
         }
-        
+
+        // GET: Manage/EmployeeDelete/id
+        public ActionResult EmployeeDelete(string id)
+        {
+            Employee employee = db.Employees.Find(id);
+            return View(employee);
+        }
+
+        // POST: Manage/EmployeeDelete/id
+        [HttpPost, ActionName("EmployeeDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Employee employee = db.Employees.Find(id);
+            db.Employees.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         [HttpPost]
         public ActionResult SaveChanges(SaveChangesViewModel model)
@@ -110,9 +129,9 @@ namespace Exam_2016.Controllers
                 this.db.SaveChanges();
             }
 
-                return View("UserDetail");
+                return View("EmployeeInfoEdit");
         }
-        //
+        
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

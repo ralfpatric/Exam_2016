@@ -271,8 +271,8 @@
     <Content Include="Views\Manage\EmployeeInfoEdit.cshtml" />
     <Content Include="Views\Manage\UserInfo.cshtml" />
     <Content Include="Views\Manage\EmployeeDetails.cshtml" />
-    
     <Content Include="Views\Roles\AddCurriculum.cshtml" />
+    <Content Include="Views\Manage\EmployeeDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
