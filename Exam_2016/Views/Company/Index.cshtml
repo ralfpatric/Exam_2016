@@ -87,6 +87,15 @@ else
             }
                                     
             </table>
+            foreach (var role in company.Roles)
+            {
+                <p>
+                    @Html.DisplayFor(modelItem => role.Name)
+                </p>
+                <span>@Html.ActionLink("Details", "Details", "Roles", new { id = role.CompanyRoleId }, null)</span>
+                
+            }
+
         }
     }
 
