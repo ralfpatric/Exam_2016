@@ -151,7 +151,23 @@ namespace Exam_2016.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+                if (model.ProfilePicture != null)
+                {
+                    if (model.ProfilePicture.ContentLength > (4 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        return View();
+                    }
+                    if (!(model.ProfilePicture.ContentType == "image/jpeg" || model.ProfilePicture.ContentType == "image/gif"))
+                    {
+                        ModelState.AddModelError("CustomError", "Image must be in jpeg or gif format.");
+                    }
+                }
+                byte[] data = new byte[model.ProfilePicture.ContentLength];
+                model.ProfilePicture.InputStream.Read(data, 0, model.ProfilePicture.ContentLength);
+
+
+                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = data };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

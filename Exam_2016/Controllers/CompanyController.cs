@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Exam_2016.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Exam_2016.Controllers
 {
@@ -17,7 +18,11 @@ namespace Exam_2016.Controllers
         // GET: Company
         public ActionResult Index()
         {
-            return View(db.Companies.ToList());
+            return View(new CompanyViewModel
+            {
+                Companies = db.Companies.ToList(),
+                CurrentEmployee = db.Employees.Find(User.Identity.GetUserId())
+            });
         }
 
         // GET: Company/Details/5
@@ -50,7 +55,15 @@ namespace Exam_2016.Controllers
         {
             if (ModelState.IsValid)
             {
+                var CurrentUserId = User.Identity.GetUserId();
+                company.Admins.Add(CurrentUserId);
+                Employee employee = db.Employees.Find(User.Identity.GetUserId());
+                company.Employees.Add(employee);
+
                 db.Companies.Add(company);
+                db.SaveChanges();
+
+                SetEmployeeToCompany(company.CompanyId);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -114,6 +127,24 @@ namespace Exam_2016.Controllers
             db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult BecomePartOfCompany(int companyId)
+        {
+            Employee employee = db.Employees.Find(User.Identity.GetUserId());
+            Company company = db.Companies.Find(companyId);
+
+            company.Employees.Add(employee);
+            db.SaveChanges();
+            SetEmployeeToCompany(companyId);
+            return RedirectToAction("Index");
+        }
+
+        private void SetEmployeeToCompany(int companyId)
+        {
+            Employee employee = db.Employees.Find(User.Identity.GetUserId());
+            employee.CompanyId = companyId;
+            this.db.SaveChanges();
         }
 
         protected override void Dispose(bool disposing)

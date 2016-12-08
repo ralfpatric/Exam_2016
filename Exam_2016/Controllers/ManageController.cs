@@ -125,7 +125,7 @@ namespace Exam_2016.Controllers
                 employee.Age = model.Age;
                 employee.Position = model.Position;
                 employee.Score = model.Score;
-                employee.ProfilePicture = model.ProfilePicture;
+                //employee.ProfilePicture = model.ProfilePicture;
                 this.db.SaveChanges();
             }
 
