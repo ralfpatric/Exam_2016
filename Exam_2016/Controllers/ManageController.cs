@@ -83,6 +83,25 @@ namespace Exam_2016.Controllers
             Employee employee = db.Employees.Find(CurrentUserId);
             return View(employee);
         }
+
+        [HttpPost]
+        public ActionResult SaveChanges(SaveChangesViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var CurrentUserId = User.Identity.GetUserId();
+                Employee employee = db.Employees.Find(CurrentUserId);
+                employee.FirstName = model.FirstName;
+                employee.LastName = model.LastName;
+                employee.Age = model.Age;
+                employee.Position = model.Position;
+                employee.Score = model.Score;
+                employee.ProfilePicture = model.ProfilePicture;
+                this.db.SaveChanges();
+            }
+
+                return View("UserDetail");
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
