@@ -89,8 +89,9 @@ namespace Exam_2016.Controllers
         // GET: /Manage/EmployeeDetails/id
         public ActionResult EmployeeDetails(string id)
         {
+            var listofE = db.Employees.ToList();
             //var CurrentUserId = User.Identity.GetUserId();
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Where(i => i.Id == id).First();
             return View(employee);
         }
 
