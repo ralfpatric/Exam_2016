@@ -64,7 +64,7 @@ namespace Exam_2016.Controllers
                 db.SaveChanges();
 
                 SetEmployeeToCompany(company.CompanyId);
-
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.CurrentCompanyId = company.CompanyId;
@@ -131,6 +131,11 @@ namespace Exam_2016.Controllers
 
         public ActionResult BecomePartOfCompany(int companyId)
         {
+            Employee employee = db.Employees.Find(User.Identity.GetUserId());
+            Company company = db.Companies.Find(companyId);
+
+            company.Employees.Add(employee);
+            db.SaveChanges();
             SetEmployeeToCompany(companyId);
             return RedirectToAction("Index");
         }
