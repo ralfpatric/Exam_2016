@@ -188,6 +188,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -271,8 +272,8 @@
     <Content Include="Views\Manage\EmployeeInfoEdit.cshtml" />
     <Content Include="Views\Manage\UserInfo.cshtml" />
     <Content Include="Views\Manage\EmployeeDetails.cshtml" />
-    
     <Content Include="Views\Roles\AddCurriculum.cshtml" />
+    <Content Include="Views\Manage\EmployeeDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
