@@ -85,19 +85,20 @@ else
                     </td>
                 </tr>
             }
+            
                                     
             </table>
+
             <table class="table">
+                <caption>List of Roles in @Html.DisplayFor(modelItem => company.Name)</caption>
                 <tr>
                     <th>
                         Name
                     </th>
                     <th>
-                        Last Name
+                        Link to Details page
                     </th>
-                    <th>
-                        Position
-                    </th>
+                    
                     <th></th>
                 </tr>
                 @foreach (var role in company.Roles)
