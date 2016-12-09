@@ -87,14 +87,36 @@ else
             }
                                     
             </table>
-            foreach (var role in company.Roles)
-            {
-                <p>
-                    @Html.DisplayFor(modelItem => role.Name)
-                </p>
-                <span>@Html.ActionLink("Details", "Details", "Roles", new { id = role.CompanyRoleId }, null)</span>
-                
-            }
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var role in company.Roles)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => role.Name)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Roles", new { id = role.CompanyRoleId }, null)
+                    </td>
+
+                   
+                </tr>
+
+
+                }
+            </table>
 
         }
     }
