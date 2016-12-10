@@ -122,7 +122,7 @@ else
                 }
             </table>
 
-            //alternate representation of roles and employees
+            @*//alternate representation of roles and employees
             <p>List of Roles in @Html.DisplayFor(modelItem => company.Name)</p>
             foreach (var role in company.Roles)
             {
@@ -135,7 +135,7 @@ else
                         <span>@Html.ActionLink("Details Page", "EmployeeDetails", "Manage", new { id = employee.Id } , null)</span>
                     </p>
                 }
-            }
+            }*@
         }
     }
 
