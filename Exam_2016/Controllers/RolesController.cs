@@ -91,7 +91,7 @@ namespace Exam_2016.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         public ActionResult AddToCurrentRoles(int? RoleId)
@@ -101,13 +101,13 @@ namespace Exam_2016.Controllers
                 string sid = User.Identity.GetUserId();
 
                 Employee e = db.Employees.Find(sid);
-                CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
+                CompanyRole cr = db.CompanyRoles.Find(RoleId);
                 e.CurrentRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         public ActionResult AddToFutureRoles(int? RoleId)
@@ -123,7 +123,7 @@ namespace Exam_2016.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         [HttpPost]

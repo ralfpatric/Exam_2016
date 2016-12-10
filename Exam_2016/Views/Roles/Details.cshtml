@@ -11,9 +11,9 @@
 
 <h4>Employee Experience with Role</h4>
 
-@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { id = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { id = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { id = Model.CompanyRoleId })
+@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { RoleId = Model.CompanyRoleId }) |
+@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { RoleId = Model.CompanyRoleId }) |
+@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { RoleId = Model.CompanyRoleId })
 
 <table class="table">
     <tr>
