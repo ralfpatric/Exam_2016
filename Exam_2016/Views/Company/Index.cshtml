@@ -19,9 +19,6 @@
             <th>
                Logo
             </th>
-            <th>
-               Next Yearly Interview
-            </th>
             <th></th>
         </tr>
 
@@ -34,12 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Logo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NextYearlyInterview)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
                 @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.CompanyId }) |
                 @Html.ActionLink("Assign yourself", "BecomePartOfCompany", new { companyId = item.CompanyId })
             </td>
         </tr>
