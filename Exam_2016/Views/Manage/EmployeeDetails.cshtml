@@ -49,6 +49,34 @@
         <dd>
             @Html.DisplayFor(model => model.Score)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentRoles)
+        </dt>
+        <dd>
+            @foreach (var role in Model.CurrentRoles)
+            {
+                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FutureRoles)
+        </dt>
+        <dd>
+            @foreach (var role in Model.FutureRoles)
+            {
+                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PastRoles)
+        </dt>
+        <dd>
+            @foreach (var role in Model.PastRoles)
+            {
+                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+            }
+        </dd>
 
     </dl>
 </div>
