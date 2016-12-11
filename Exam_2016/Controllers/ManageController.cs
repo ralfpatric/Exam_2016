@@ -118,6 +118,14 @@ namespace Exam_2016.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: /Manage/CompanyInfoEdit
+        public ActionResult CompanyInfoEdit()
+        {
+            var CurrentUserId = User.Identity.GetUserId();
+            Company company = db.Companies.Find(CurrentUserId);
+            return View(company);
+        }
+
 
         [HttpPost]
         public ActionResult SaveChanges(SaveChangesViewModel model)
@@ -136,6 +144,22 @@ namespace Exam_2016.Controllers
             }
 
                 return RedirectToAction("EmployeeInfoEdit");
+        }
+
+        [HttpPost]
+        public ActionResult SaveCompanyChanges (SaveCompanyChangesViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var CurrentUserId = User.Identity.GetUserId();
+                Company company = db.Companies.Find(CurrentUserId);
+                company.Name = model.Name;
+                company.Logo = model.Logo;
+                company.NextYearlyInterview = model.NextYearlyInterview;
+                this.db.SaveChanges();
+
+            }
+            return View("CompanyInfoEdit");
         }
         
         // POST: /Manage/RemoveLogin
