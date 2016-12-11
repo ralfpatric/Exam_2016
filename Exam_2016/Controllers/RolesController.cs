@@ -40,8 +40,7 @@ namespace Exam_2016.Controllers
             CompanyRole role;
             if (RoleId == null)
             {
-                role = db.CompanyRoles.Find(1);
-                return View(role);
+                return View("Error");
             }
             else
             {
@@ -87,6 +86,7 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
                 e.PastRoles.Add(cr);
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
@@ -103,6 +103,7 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = db.CompanyRoles.Find(RoleId);
                 e.CurrentRoles.Add(cr);
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
@@ -118,7 +119,10 @@ namespace Exam_2016.Controllers
 
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
-                e.FutureRoles.Add(cr);
+                List<CompanyRole> L = e.FutureRoles;
+                L.Add(cr);
+                e.FutureRoles = L;
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
@@ -135,7 +139,7 @@ namespace Exam_2016.Controllers
             cr.Curriculum.Add(c);
             db.SaveChanges();
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
     }
 }

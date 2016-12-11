@@ -28,34 +28,51 @@
     {
         foreach (var item in Model.Employees)
         {
+            bool any = false;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
-                @foreach (var itemj in item.PastRoles)
-                {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                <td>
+                    @foreach (var itemj in item.PastRoles)
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
-                        </td>
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Past)")
+                            any = true;
+                        }
                     }
-                }
-                @foreach (var itemj in item.CurrentRoles)
-                {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                    @foreach (var itemj in item.CurrentRoles)
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
-                        </td>
+
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            if (any)
+                            {
+                                @("- ") 
+                            }
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Current)")
+                            any = true;
+                        }
                     }
-                    else
+                    @foreach (var itemj in item.FutureRoles)
                     {
-                        <td>
-                            No Experience
-                        </td>
+
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            if (any)
+                            {
+                                @("- ")
+                            }
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Future)")
+                            any = true;
+                        }
                     }
-                }
+                    @if(!any)
+                    {
+                        @("No Experience")
+                    }
+                </td>
             </tr>
         }
     }

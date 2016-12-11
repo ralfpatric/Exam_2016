@@ -15,9 +15,33 @@ namespace Exam_2016.Models
         public string Position { get; set; }
         public int Score { get; set; }
         public byte[] ProfilePicture { get; set; }
+        public virtual ICollection<CompanyRole> AllRoles { get; set; }
         public virtual ICollection<CompanyRole> PastRoles { get; set; }
         public virtual ICollection<CompanyRole> CurrentRoles { get; set; }
-        public virtual ICollection<CompanyRole> FutureRoles { get; set; }
+        private List<CompanyRole> _FutureRoles;
+        public virtual List<CompanyRole> FutureRoles {
+            get
+            {
+                return this._FutureRoles;
+            }
+            set
+            {
+                if(value.Count() < 4)
+                {
+                    _FutureRoles = value;
+                }
+                else if(value.Count() > 3)
+                {
+                    do
+                    {
+                        value.RemoveAt(0);
+                    }
+                    while (value.Count() > 3);
+
+                    _FutureRoles = value;
+                }
+            }
+        }
         public virtual ICollection<Achievement> AchievementsEarned { get; set; }
     }
 }
