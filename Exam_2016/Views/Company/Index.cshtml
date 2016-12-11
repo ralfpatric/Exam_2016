@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Company Index</h2>
 
 @if (Model.CurrentEmployee.CompanyId == 0 || Model.CurrentEmployee.CompanyId == null)
 {
@@ -46,7 +46,7 @@ else
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
             <p>Welcome to @Html.DisplayFor(modelItem => company.Name).</p>
-            <p>Your colleagues:</p>
+            <h3>Your colleagues:</h3>
             <table class="table">
                 <tr>
                     <th>
@@ -84,8 +84,8 @@ else
                                     
             </table>
 
+            <h3>List of Roles in @Html.DisplayFor(modelItem => company.Name)</h3>
             <table class="table">
-                <caption>List of Roles in @Html.DisplayFor(modelItem => company.Name)</caption>
                 <tr>
                     <th>
                         Name

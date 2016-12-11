@@ -159,12 +159,14 @@ namespace Exam_2016.Controllers
                     file.SaveAs(_path);
                 }
 
-                var fullPath = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                //string fullPath = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                //string fullPath2 = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+                //string fullPath = new Uri(fullPath2).LocalPath;
 
                 // String RelativePath = AbsolutePath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty); -- this might work for the relative path, still have to look into it.
 
 
-                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = fullPath, };
+                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = file.FileName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
