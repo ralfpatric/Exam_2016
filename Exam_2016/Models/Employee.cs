@@ -26,17 +26,19 @@ namespace Exam_2016.Models
             }
             set
             {
-                if(value.Count() < 4)
+                int counter = value.Count();
+                if(counter < 4)
                 {
                     _FutureRoles = value;
                 }
-                else if(value.Count() > 3)
+                else if(counter > 3)
                 {
                     do
                     {
                         value.RemoveAt(0);
+                        counter--;
                     }
-                    while (value.Count() > 3);
+                    while (counter > 3);
 
                     _FutureRoles = value;
                 }
