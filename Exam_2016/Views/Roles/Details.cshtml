@@ -37,7 +37,7 @@
                     @Html.DisplayFor(modelItem => employee.FirstName)
                 </td>
                 <td>
-                    @foreach (var itemj in item.PastRoles)
+                    @foreach (var itemj in employee.PastRoles)
                     {
                         if (itemj.CompanyRoleId == Model.CompanyRoleId)
                         {
@@ -45,7 +45,7 @@
                             any = true;
                         }
                     }
-                    @foreach (var itemj in item.CurrentRoles)
+                    @foreach (var itemj in employee.CurrentRoles)
                     {
 
                         if (itemj.CompanyRoleId == Model.CompanyRoleId)
@@ -58,7 +58,7 @@
                             any = true;
                         }
                     }
-                    @foreach (var itemj in item.FutureRoles)
+                    @foreach (var itemj in employee.FutureRoles)
                     {
 
                         if (itemj.CompanyRoleId == Model.CompanyRoleId)
@@ -87,7 +87,7 @@
 <table class="table">
     <tr>
         <th>
-            Curriculum Text
+            Curriculum
         </th>
         <th>
             Actions
@@ -98,9 +98,6 @@
         <tr>
             <td>
                 @(item.CurriculumContent)
-            </td>
-            <td>
-                ((To Be Implemented))
             </td>
         </tr>
     }
