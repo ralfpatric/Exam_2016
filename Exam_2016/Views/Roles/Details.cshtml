@@ -21,40 +21,40 @@
             Employee Name
         </th>
         <th>
-            Employee Experience
+            Past Experience
+        </th>
+        <th>
+            Current assignment
         </th>
     </tr>
     @if (Model != null)
     {
-        foreach (var item in Model.Employees)
+        foreach (var employee in Model.Employees)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => employee.FirstName)
                 </td>
-                @foreach (var itemj in item.PastRoles)
+                @foreach (var pastRole in employee.PastRoles)
                 {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                    if (pastRole.CompanyRoleId == Model.CompanyRoleId)
                     {
                         <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
+                            @Html.DisplayFor(modelItem => pastRole.Name)
                         </td>
                     }
                 }
-                @foreach (var itemj in item.CurrentRoles)
-                {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                    @foreach (var currentRole in employee.CurrentRoles)
                     {
+
                         <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
+                            @if (currentRole.CompanyRoleId == Model.CompanyRoleId)
+                            {
+                                @Html.DisplayFor(modelItem => currentRole.Name)
+                            }
+                   
                         </td>
-                    }
-                    else
-                    {
-                        <td>
-                            No Experience
-                        </td>
-                    }
+                    
                 }
             </tr>
         }
