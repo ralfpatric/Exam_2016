@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Exam_2016.Models;
+using System.IO;
 
 namespace Exam_2016.Controllers
 {
@@ -147,27 +148,23 @@ namespace Exam_2016.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                if (model.ProfilePicture != null)
+                if (file.ContentLength > 0)
                 {
-                    if (model.ProfilePicture.ContentLength > (4 * 1024 * 1024))
-                    {
-                        ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
-                        return View();
-                    }
-                    if (!(model.ProfilePicture.ContentType == "image/jpeg" || model.ProfilePicture.ContentType == "image/gif"))
-                    {
-                        ModelState.AddModelError("CustomError", "Image must be in jpeg or gif format.");
-                    }
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    file.SaveAs(_path);
                 }
-                byte[] data = new byte[model.ProfilePicture.ContentLength];
-                model.ProfilePicture.InputStream.Read(data, 0, model.ProfilePicture.ContentLength);
+
+                var fullPath = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
+
+                // String RelativePath = AbsolutePath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty); -- this might work for the relative path, still have to look into it.
 
 
-                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = data };
+                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = fullPath, };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

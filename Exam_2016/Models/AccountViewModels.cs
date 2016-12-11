@@ -89,7 +89,7 @@ namespace Exam_2016.Models
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
 
-        public HttpPostedFileBase ProfilePicture { get; set; }
+        public string ProfilePicture { get; set; }
 
     }
 

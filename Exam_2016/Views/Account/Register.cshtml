@@ -47,12 +47,18 @@
         </div>
     </div>
 
-    <div class="form-group"> @*-------------------------- This is for the profile picture*@
-        @Html.LabelFor(m => m.ProfilePicture, new { @class = "col-md-2 control-label" })
+
+    <div class="form-group"> @*-------------------------- This is for Profile Picture*@
+
+        <label class="col-md-2 control-label">Profile Picture</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ProfilePicture, new { type = "file" })
-            @Html.ValidationMessage("CustomMessage")
+            @Html.TextBox("file", "", new { type = "file" })
         </div>
+        
+
+        @*<input type="submit" value="Upload" />*@
+
+
     </div>
 
     <div class="form-group">
