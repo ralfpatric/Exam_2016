@@ -46,6 +46,7 @@ else
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
             <p>Welcome to @Html.DisplayFor(modelItem => company.Name).</p>
+            <p>The next yearly Interview will be held on @Html.DisplayFor(modelItem => company.NextYearlyInterview)</p>
             <h3>Your colleagues:</h3>
             <table class="table">
                 <tr>
