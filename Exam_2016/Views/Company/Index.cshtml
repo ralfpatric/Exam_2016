@@ -19,9 +19,6 @@
             <th>
                Logo
             </th>
-            <th>
-               Next Yearly Interview
-            </th>
             <th></th>
         </tr>
 
@@ -34,12 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Logo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NextYearlyInterview)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
                 @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.CompanyId }) |
                 @Html.ActionLink("Assign yourself", "BecomePartOfCompany", new { companyId = item.CompanyId })
             </td>
         </tr>
@@ -66,7 +58,7 @@ else
                     <th>
                         Position
                     </th>
-                    <th></th>
+                    <th>Details</th>
                 </tr>
 
             @foreach (var employee in company.Employees)
@@ -82,6 +74,9 @@ else
                 
                     <td>
                         @Html.DisplayFor(modelItem => employee.Position)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details Page", "EmployeeDetails", "Manage", new { id = employee.Id }, null)
                     </td>
                 </tr>
             }
@@ -109,7 +104,7 @@ else
                     </td>
 
                     <td>
-                        @Html.ActionLink("Details", "Details", "Roles", new { id = role.CompanyRoleId }, null)
+                        @Html.ActionLink("Details", "Details", "Roles", new { RoleId = role.CompanyRoleId }, null)
                     </td>
 
                    
@@ -119,6 +114,20 @@ else
                 }
             </table>
 
+            @*//alternate representation of roles and employees
+            <p>List of Roles in @Html.DisplayFor(modelItem => company.Name)</p>
+            foreach (var role in company.Roles)
+            {
+                <span>@Html.DisplayFor(modelItem => role.Name)</span> 
+                <span>@Html.ActionLink("Details", "Details", "Roles", new { RoleId = role.CompanyRoleId }, null)</span>
+                foreach (var employee in role.Employees)
+                {
+                    <p>
+                        <span>@Html.DisplayFor(modelItem => employee.FirstName) @Html.DisplayFor(modelItem => employee.LastName)</span>
+                        <span>@Html.ActionLink("Details Page", "EmployeeDetails", "Manage", new { id = employee.Id } , null)</span>
+                    </p>
+                }
+            }*@
         }
     }
 

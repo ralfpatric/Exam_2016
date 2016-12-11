@@ -11,9 +11,9 @@
 
 <h4>Employee Experience with Role</h4>
 
-@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { id = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { id = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { id = Model.CompanyRoleId })
+@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { RoleId = Model.CompanyRoleId }) |
+@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { RoleId = Model.CompanyRoleId }) |
+@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { RoleId = Model.CompanyRoleId })
 
 <table class="table">
     <tr>
@@ -21,41 +21,61 @@
             Employee Name
         </th>
         <th>
-            Employee Experience
+            Past Experience
+        </th>
+        <th>
+            Current assignment
         </th>
     </tr>
     @if (Model != null)
     {
-        foreach (var item in Model.Employees)
+        foreach (var employee in Model.Employees)
         {
+            bool any = false;
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(modelItem => employee.FirstName)
                 </td>
-                @foreach (var itemj in item.PastRoles)
-                {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                <td>
+                    @foreach (var itemj in employee.PastRoles)
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
-                        </td>
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Past)")
+                            any = true;
+                        }
                     }
-                }
-                @foreach (var itemj in item.CurrentRoles)
-                {
-                    if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                    @foreach (var itemj in employee.CurrentRoles)
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => itemj.Name)
-                        </td>
+
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            if (any)
+                            {
+                                @("- ") 
+                            }
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Current)")
+                            any = true;
+                        }
                     }
-                    else
+                    @foreach (var itemj in employee.FutureRoles)
                     {
-                        <td>
-                            No Experience
-                        </td>
+
+                        if (itemj.CompanyRoleId == Model.CompanyRoleId)
+                        {
+                            if (any)
+                            {
+                                @("- ")
+                            }
+                            @Html.DisplayFor(modelItem => itemj.Name) @(" (Future)")
+                            any = true;
+                        }
                     }
-                }
+                    @if(!any)
+                    {
+                        @("No Experience")
+                    }
+                </td>
             </tr>
         }
     }
@@ -67,7 +87,7 @@
 <table class="table">
     <tr>
         <th>
-            Curriculum Text
+            Curriculum
         </th>
         <th>
             Actions
@@ -78,9 +98,6 @@
         <tr>
             <td>
                 @(item.CurriculumContent)
-            </td>
-            <td>
-                ((To Be Implemented))
             </td>
         </tr>
     }

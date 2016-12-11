@@ -102,6 +102,11 @@ namespace Exam_2016.Controllers
             return View(employee);
         }
 
+        public ActionResult RedirectToUserDetails()
+        {
+            return RedirectToAction("EmployeeDetails", new { id = User.Identity.GetUserId() });
+        }
+
         // POST: Manage/EmployeeDelete/id
         [HttpPost, ActionName("EmployeeDelete")]
         [ValidateAntiForgeryToken]

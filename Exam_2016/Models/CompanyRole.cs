@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Exam_2016.Models
 {
@@ -19,6 +20,7 @@ namespace Exam_2016.Models
         public int CompanyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        [InverseProperty("AllRoles")]
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Curriculum> Curriculum { get; set; }
         public virtual ICollection<Achievement> Achievements { get; set; }

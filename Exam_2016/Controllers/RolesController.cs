@@ -19,29 +19,39 @@ namespace Exam_2016.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Roles
+        [Authorize]
         public ActionResult Index(int? id)
         {
-            IEnumerable<CompanyRole> roles;
+            RoleIndexViewModel rivm = new RoleIndexViewModel();
             if (id == null)
             {
-                roles = db.CompanyRoles.ToList();
+                int CurrentCompanyId = (int)db.Employees.Find(User.Identity.GetUserId()).CompanyId;
+                ViewBag.CurrentCompanyName = db.Companies.Find(CurrentCompanyId).Name;
+                
+                rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
+                rivm.CurrentCompany = db.Companies.Find(CurrentCompanyId);
+                rivm.CompanyRoles = db.CompanyRoles.ToList();
             }
             else
             {
-                roles = db.CompanyRoles.ToList().FindAll(i => i.CompanyId == id);
+                ViewBag.CurrentCompanyName = db.Companies.Find(id).Name;
+
+                rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
+                rivm.CurrentCompany = db.Companies.Find(id);
+                rivm.CompanyRoles = db.CompanyRoles.ToList().FindAll(i => i.CompanyId == id);
             }
             
-            return View(roles);
+            return View(rivm);
         }
 
         // GET: Roles/Details/5
+        [Authorize]
         public ActionResult Details(int? RoleId)
         {
             CompanyRole role;
             if (RoleId == null)
             {
-                role = db.CompanyRoles.Find(1);
-                return View(role);
+                return View("Error");
             }
             else
             {
@@ -50,11 +60,13 @@ namespace Exam_2016.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name,Description")] CompanyRole cr)
@@ -87,11 +99,12 @@ namespace Exam_2016.Controllers
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
                 e.PastRoles.Add(cr);
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         public ActionResult AddToCurrentRoles(int? RoleId)
@@ -101,13 +114,14 @@ namespace Exam_2016.Controllers
                 string sid = User.Identity.GetUserId();
 
                 Employee e = db.Employees.Find(sid);
-                CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
+                CompanyRole cr = db.CompanyRoles.Find(RoleId);
                 e.CurrentRoles.Add(cr);
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         public ActionResult AddToFutureRoles(int? RoleId)
@@ -118,12 +132,15 @@ namespace Exam_2016.Controllers
 
                 Employee e = db.Employees.Find(sid);
                 CompanyRole cr = (CompanyRole)db.CompanyRoles.Find(RoleId);
-                e.FutureRoles.Add(cr);
+                List<CompanyRole> L = e.FutureRoles;
+                L.Add(cr);
+                e.FutureRoles = L;
+                e.AllRoles.Add(cr);
                 cr.Employees.Add(e);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
 
         [HttpPost]
@@ -135,7 +152,7 @@ namespace Exam_2016.Controllers
             cr.Curriculum.Add(c);
             db.SaveChanges();
 
-            return RedirectToAction("Details", RoleId);
+            return RedirectToAction("Details", new { RoleId = RoleId });
         }
     }
 }
