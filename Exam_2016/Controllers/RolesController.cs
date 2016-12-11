@@ -19,22 +19,33 @@ namespace Exam_2016.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Roles
+        [Authorize]
         public ActionResult Index(int? id)
         {
-            IEnumerable<CompanyRole> roles;
+            RoleIndexViewModel rivm = new RoleIndexViewModel();
             if (id == null)
             {
-                roles = db.CompanyRoles.ToList();
+                int CurrentCompanyId = (int)db.Employees.Find(User.Identity.GetUserId()).CompanyId;
+                ViewBag.CurrentCompanyName = db.Companies.Find(CurrentCompanyId).Name;
+                
+                rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
+                rivm.CurrentCompany = db.Companies.Find(CurrentCompanyId);
+                rivm.CompanyRoles = db.CompanyRoles.ToList();
             }
             else
             {
-                roles = db.CompanyRoles.ToList().FindAll(i => i.CompanyId == id);
+                ViewBag.CurrentCompanyName = db.Companies.Find(id).Name;
+
+                rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
+                rivm.CurrentCompany = db.Companies.Find(id);
+                rivm.CompanyRoles = db.CompanyRoles.ToList().FindAll(i => i.CompanyId == id);
             }
             
-            return View(roles);
+            return View(rivm);
         }
 
         // GET: Roles/Details/5
+        [Authorize]
         public ActionResult Details(int? RoleId)
         {
             CompanyRole role;
@@ -49,11 +60,13 @@ namespace Exam_2016.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name,Description")] CompanyRole cr)
