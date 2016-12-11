@@ -135,7 +135,7 @@ namespace Exam_2016.Controllers
                 this.db.SaveChanges();
             }
 
-                return View("EmployeeInfoEdit");
+                return RedirectToAction("EmployeeInfoEdit");
         }
         
         // POST: /Manage/RemoveLogin
