@@ -25,12 +25,21 @@ namespace Exam_2016.Controllers
             RoleIndexViewModel rivm = new RoleIndexViewModel();
             if (id == null)
             {
-                int CurrentCompanyId = (int)db.Employees.Find(User.Identity.GetUserId()).CompanyId;
-                ViewBag.CurrentCompanyName = db.Companies.Find(CurrentCompanyId).Name;
-                
-                rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
-                rivm.CurrentCompany = db.Companies.Find(CurrentCompanyId);
-                rivm.CompanyRoles = db.CompanyRoles.ToList();
+                var temp = db.Employees.Find(User.Identity.GetUserId()).CompanyId;
+                if (temp != null)
+                {
+                    int CurrentCompanyId = (int)temp;
+                    ViewBag.CurrentCompanyName = db.Companies.Find(CurrentCompanyId).Name;
+
+                    rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
+                    rivm.CurrentCompany = db.Companies.Find(CurrentCompanyId);
+                    rivm.CompanyRoles = db.CompanyRoles.ToList();
+                } else
+                {
+                    rivm.CurrentEmployee = null;
+                    rivm.CurrentCompany = null;
+                    rivm.CompanyRoles = null;
+                }
             }
             else
             {

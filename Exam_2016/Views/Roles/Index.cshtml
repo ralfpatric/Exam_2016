@@ -4,6 +4,9 @@
     ViewBag.Title = "Index";
 }
 
+@if (Model.CompanyRoles != null || Model.CurrentCompany != null || Model.CurrentEmployee != null)
+{
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -61,3 +64,7 @@
     }
 
 </table>
+}
+else {
+    <p class="alert-danger text-center">You must be in a company to view its roles.</p>
+}
