@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Exam_2016.Models.Chat>
+
+@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>Chat</h2>
+
+<div id="time">
+
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(model => item.Time) <text> </text> @Html.DisplayFor(model => item.Name) <text> </text> @Html.DisplayFor(model => item.Message) <br />
+    }
+
+    <p>-----End of archive-----</p>
+
+</div>
+
+<form>
+    <input id="name" type="text" placeholder="Your name" />
+    <input id="msg" type="text" placeholder="Your message" />
+    <input type="submit" />
+</form>
+
+@section Scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        var myHub = $.connection.myHub;
+
+        myHub.client.helloJs = function (s) {
+            $("#time").append(s + "<br>");
+        }
+
+        myHub.client.message = function (date, name, msg, cid) {
+            $("#time").append(date + " <b>" + name + ":</b> " + msg + "<br>");
+        }
+
+        $("form").submit(function (e) {
+            e.preventDefault();
+            var name = $("#name").val();
+            var msg = $("#msg").val();
+
+            myHub.server.send(name, msg);
+        });
+
+        $.connection.hub.start().done(function () {
+            myHub.server.hello();
+        });
+    </script>
+}
+

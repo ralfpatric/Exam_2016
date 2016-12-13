@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exam_2016.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace Exam_2016.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -29,5 +32,11 @@ namespace Exam_2016.Controllers
             return View();
         }
         
+        public ActionResult Chat()
+        {
+            IEnumerable<Chat> c = db.Chats.ToList();
+
+            return View(c);
+        }
     }
 }

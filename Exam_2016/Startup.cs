@@ -9,6 +9,7 @@ namespace Exam_2016
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }
