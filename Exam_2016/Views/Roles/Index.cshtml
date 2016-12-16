@@ -7,11 +7,14 @@
 @if (Model.CompanyRoles != null || Model.CurrentCompany != null || Model.CurrentEmployee != null)
 {
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-<h2>Roles for @ViewBag.CurrentCompanyName</h2>
+    <div class="row role-index-header">
+        <h2 class="col-md-10">Roles for @ViewBag.CurrentCompanyName</h2>
+
+        <div class="col-md-2">
+            @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-role-index-create btn-eksponent" })
+        </div>
+    </div>
 
 <table class="table">
     <tr>
@@ -64,7 +67,40 @@
     }
 
 </table>
+
+    foreach (var item in Model.CompanyRoles)
+    {
+        <div class="row role-card">
+            <div class="col-md-11">
+                <h3 class="role-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                <p class="role-description">@Html.DisplayFor(modelItem => item.Description)</p>
+            </div>
+            <div class="col-md-1 role-actions">
+
+                @Html.ActionLink("Details", "Details", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions"})
+                @Html.ActionLink("Edit", "Edit", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                @Html.ActionLink("Delete", "Delete", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                @{
+                    foreach (var admin in Model.CurrentCompany.Admins)
+                    {
+                        if (admin == Model.CurrentEmployee.Id)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                            @Html.ActionLink("Delete", "Delete", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                            }
+                        }
+                }
+
+            </div>
+        </div>
+
+
+    }
+
+
+
 }
-else {
-    <p class="alert-danger text-center">You must be in a company to view its roles.</p>
+else
+{
+    <h3 class="alert-danger text-center">You must be in a company to view its roles.</h3>
 }
