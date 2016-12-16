@@ -45,6 +45,7 @@ else
     {
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
+            <img src="@Html.DisplayFor(modelItem => company.Logo)" alt="Mountain View" style="width:150px;height:150px;">
             <p>Welcome to @Html.DisplayFor(modelItem => company.Name).</p>
             <p>The next yearly Interview will be held on @Html.DisplayFor(modelItem => company.NextYearlyInterview)</p>
             <h3>Your colleagues:</h3>
@@ -91,11 +92,12 @@ else
                     <th>
                         Name
                     </th>
+                    <th>Number of employees</th>
                     <th>
                         Link to Details page
                     </th>
                     
-                    <th></th>
+                    
                 </tr>
                 @foreach (var role in company.Roles)
                 {
@@ -103,7 +105,9 @@ else
                     <td>
                         @Html.DisplayFor(modelItem => role.Name)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => role.Employees.Count )
+                    </td>
                     <td>
                         @Html.ActionLink("Details", "Details", "Roles", new { RoleId = role.CompanyRoleId }, null)
                     </td>
@@ -115,20 +119,6 @@ else
                 }
             </table>
 
-            @*//alternate representation of roles and employees
-            <p>List of Roles in @Html.DisplayFor(modelItem => company.Name)</p>
-            foreach (var role in company.Roles)
-            {
-                <span>@Html.DisplayFor(modelItem => role.Name)</span> 
-                <span>@Html.ActionLink("Details", "Details", "Roles", new { RoleId = role.CompanyRoleId }, null)</span>
-                foreach (var employee in role.Employees)
-                {
-                    <p>
-                        <span>@Html.DisplayFor(modelItem => employee.FirstName) @Html.DisplayFor(modelItem => employee.LastName)</span>
-                        <span>@Html.ActionLink("Details Page", "EmployeeDetails", "Manage", new { id = employee.Id } , null)</span>
-                    </p>
-                }
-            }*@
         }
     }
 
