@@ -1,12 +1,15 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 75px;
     padding-bottom: 20px;
+    background-color: #fafafa;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    height: 90vh;
+    
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -23,8 +26,110 @@ textarea {
     max-width: 280px;
 }
 
+/*black -- #262626
+green -- #3f9335
+pink -- #e4424b
+grey -- #dbdbdb
+white -- #ffffff*/
+
+/* -------------------- GLOBAL --------------------*/
+
+.page-title {
+    padding-top: 45px;
+}
+
+.btn-eksponent {
+    color: white;
+    background-color: #3f9335;
+    border-color: rgba(63, 147, 53, 0.90);
+    border-radius: 0;
+}
+
+.btn-eksponent:hover {
+    background-color: rgba(63, 147, 53, 0.90);
+    color:white;
+}
+
+.btn-eksponent-border {
+    color: #262626;
+    background-color: white;
+    border-color: rgba(63, 147, 53, 0.90);
+    border-radius: 0;
+}
+
+.btn-eksponent-border:hover {
+    color: #262626;
+    background-color: #3f9335;
+    border-color: #3f9335;
+    border-radius: 0;
+}
+
+.form-control:focus {
+    border-color: #3f9335 !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.050), 0 0 4px #3f9335;
+}
+
+
+/* -------------------- Navbar --------------------*/
+.navbar {
+    min-height:75px !important;
+    border: 0 !important;
+}
+
+.navbar-container {
+    padding-top: 12.5px !important;
+}
+
+.navbar-inverse {
+    color: #262626;
+
+}
+
+.navbar-brand {
+    color: #3f9335 !important;
+}
+
+.navbar-brand:hover {
+    color: white !important;
+}
+
+.navbar-nav > li > a {
+    color: #3f9335 !important;
+}
+
+.navbar-nav > li > a:hover {
+    color: #e4424b !important;
+    border-bottom: 3px solid;
+    padding-bottom: 24px;
+}
+
+footer {
+      position: fixed;
+      right: 0;
+      left: 0;
+      z-index: 5;
+      color: white;
+      background-color: #262626;
+      min-height: 6px;
+      bottom: 0;
+      margin-bottom: 0;
+      border-width: 1px 0 0; 
+
+
+}
+
+footer > p {
+    color: white;
+    float: right;
+    padding: 0;
+    padding-right: 5px;
+    margin: 0;
+}
+
 /* -------------------- Home Page --------------------*/
-/*-------------------- Contact Page --------------------*/
+/* -------------------- Contact Page --------------------*/
+
+
 .profiles-container {
     padding: 30px 0 30px 0;
 }
@@ -46,3 +151,88 @@ textarea {
 /* -------------------- About Page --------------------*/
 
 /* -------------------- Register Page --------------------*/
+
+.invalid-register > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.register-layout {
+    border: 2px solid #3f9335;
+    margin-top: 15px;
+    padding: 20px 0;
+}
+
+/* -------------------- Login Page --------------------*/
+
+.invalid-login > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.login-form {
+    border: 2px solid #3f9335;
+    margin-top: 15px;
+    padding: 20px;
+}
+
+.check-box {
+    padding-left:7px;
+}
+
+/* -------------------- Roles Index Page --------------------*/
+
+.role-index-header {
+    margin: 0 !important;
+}
+
+.btn-role-index-create {
+    margin: 20px 0 10px 0;
+    float: right;
+}
+
+.role-actions {
+    margin: 20px 0 10px 0;
+}
+
+.btn-role-index-actions {
+    margin: 5px 0 5px 0;
+    float: right;
+    width: 80px;
+    color: black;
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 0;
+}
+
+.btn-role-index-actions:hover {
+    color:white;
+    background-color: #3f9335;
+    border: 2px solid #3f9335;
+    
+}
+
+.btn-role-index-actions:first-child {
+    margin: 0 0 5px 0;
+}
+
+.role-card {
+    background-color: #dbdbdb;
+    margin: 15px 0;
+}
+
+/* -------------------- Roles Create Page --------------------*/
+
+.btn-role-create {
+    margin: 5px 0 5px 0;
+    width: 80px;
+    color: white;
+    background-color: #3f9335;
+    border: 2px solid #3f9335;
+    border-radius: 0;
+}
+
+.btn-role-create:hover {
+    color: white;
+    background-color:rgba(63, 147, 53, 0.90) ;
+}
