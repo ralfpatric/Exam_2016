@@ -33,7 +33,7 @@ namespace Exam_2016.Controllers
 
                     rivm.CurrentEmployee = db.Employees.Find(User.Identity.GetUserId());
                     rivm.CurrentCompany = db.Companies.Find(CurrentCompanyId);
-                    rivm.CompanyRoles = db.CompanyRoles.ToList();
+                    rivm.CompanyRoles = (List<CompanyRole>)db.Companies.Find(CurrentCompanyId).Roles;
                 } else
                 {
                     rivm.CurrentEmployee = null;
