@@ -28,6 +28,7 @@ namespace Exam_2016.Models
     public class SaveCompanyChangesViewModel
     {
         public string Name { get; set; }
+        public string Description { get; set; }
         public string Logo { get; set; }
         public string NextYearlyInterview { get; set; }
 

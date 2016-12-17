@@ -154,12 +154,13 @@ namespace Exam_2016.Controllers
                 var CurrentUserId = User.Identity.GetUserId();
                 Company company = db.Companies.Find(CurrentUserId);
                 company.Name = model.Name;
+                company.Description = model.Description;
                 company.Logo = model.Logo;
                 company.NextYearlyInterview = model.NextYearlyInterview;
                 this.db.SaveChanges();
 
             }
-            return View("CompanyInfoEdit");
+            return View("Edit");
         }
         
         // POST: /Manage/RemoveLogin

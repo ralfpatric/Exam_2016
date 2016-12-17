@@ -4,14 +4,42 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Company Index</h2>
-
 @if (Model.CurrentEmployee.CompanyId == 0 || Model.CurrentEmployee.CompanyId == null)
 {
-    <p>
-         @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
+
+    <div class="row page-title">
+        <h2 class="col-md-10">Companies</h2>
+
+        <div class="col-md-2">
+            @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-role-index-create btn-eksponent" })
+        </div>
+    </div>
+
+    <hr />
+
+    foreach (var item in Model.Companies)
+    {
+        <div class="row role-card">
+
+            <div class="col-md-1">
+                COMPANY LOGO
+            </div>
+
+            <div class="col-md-9">
+                <h3 class="role-title">@Html.DisplayFor(modelItem => item.Name) </h3>
+            </div>
+
+            <div class="col-md-2 role-actions">
+                
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyId }, new { @class="btn btn-eksponent-border" })
+                @Html.ActionLink("Enroll", "BecomePartOfCompany", new { companyId = item.CompanyId }, new { @class = "btn btn-eksponent-border" })
+
+
+            </div>
+        </div>
+    }
+
+    @*<table class="table">
         <tr>
             <th>
                Name
@@ -37,7 +65,7 @@
         </tr>
     }
 
-</table>
+</table>*@
 }
 else
 {

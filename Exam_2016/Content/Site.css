@@ -38,6 +38,18 @@ white -- #ffffff*/
     padding-top: 45px;
 }
 
+.gutter-top-half {
+    margin-top: 15px;
+}
+
+.gutter-top {
+    margin-top: 30px;
+}
+
+.gutter-top-x2 {
+    margin-top: 60px;
+}
+
 .btn-eksponent {
     color: white;
     background-color: #3f9335;
@@ -58,7 +70,7 @@ white -- #ffffff*/
 }
 
 .btn-eksponent-border:hover {
-    color: #262626;
+    color: white;
     background-color: #3f9335;
     border-color: #3f9335;
     border-radius: 0;
@@ -132,6 +144,7 @@ footer > p {
 
 .profiles-container {
     padding: 30px 0 30px 0;
+    margin-top: 50px;
 }
 
 .contact-profile-picture {
@@ -145,10 +158,16 @@ footer > p {
 }
 
 .fa:hover {
-    color:#3498db;
+    color:#3f9335;
 }
 
 /* -------------------- About Page --------------------*/
+
+.about-text {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 30px;
+}
 
 /* -------------------- Register Page --------------------*/
 
@@ -192,7 +211,7 @@ footer > p {
 }
 
 .role-actions {
-    margin: 20px 0 10px 0;
+    margin: 20px 0 20px 0;
 }
 
 .btn-role-index-actions {
@@ -210,10 +229,6 @@ footer > p {
     background-color: #3f9335;
     border: 2px solid #3f9335;
     
-}
-
-.btn-role-index-actions:first-child {
-    margin: 0 0 5px 0;
 }
 
 .role-card {
@@ -236,3 +251,51 @@ footer > p {
     color: white;
     background-color:rgba(63, 147, 53, 0.90) ;
 }
+
+.btn-change-password {
+    margin: 5px 0 5px 0;
+    width: 160px;
+    color: white;
+    background-color: #3f9335;
+    border: 2px solid #3f9335;
+    border-radius: 0;
+}
+
+.btn-change-password:hover {
+    color: white;
+    background-color:rgba(63, 147, 53, 0.90) ;
+}
+
+/* -------------------- Roles Index Page --------------------*/
+
+.btn-role-assign {
+    text-align:center;
+    color: #262626;
+    background-color: white;
+    border-color: rgba(63, 147, 53, 0.90);
+    border-radius: 0;
+    width: 175px;
+    margin: 5px 0 5px 0;
+        
+}
+
+.btn-role-assign:hover {
+    text-align:center;
+    color: white;
+    background-color: #3f9335;
+    border-color: #3f9335;
+    border-radius: 0;
+}
+
+.role-details-actions {
+    text-align: right;
+    margin: 20px 0 20px 0;
+}
+
+/* -------------------- Employee Info Edit Page --------------------*/
+
+.user-profile-picture {
+    width: 40%;
+    margin: auto;
+}
+

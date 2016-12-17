@@ -4,14 +4,13 @@
     ViewBag.Title = "EmployeeDetails";
 }
 
-<h2>EmployeeDetails</h2>
+<h2 class="page-title">Employee Details</h2>
+<hr />
 
-<div>
-    <h4>Employee</h4>
-    <hr />
+<div class="col-md-6">
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            First Name
         </dt>
 
         <dd>
@@ -19,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            Last Name
         </dt>
 
         <dd>
@@ -50,37 +49,43 @@
             @Html.DisplayFor(model => model.Score)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CurrentRoles)
+            Current Roles
         </dt>
         <dd>
             @foreach (var role in Model.CurrentRoles)
             {
-                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+                <span>@Html.DisplayFor(modelItem => role.Name) - </span>
             }
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FutureRoles)
+            Future Roles
         </dt>
         <dd>
             @foreach (var role in Model.FutureRoles)
             {
-                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+                <span>@Html.DisplayFor(modelItem => role.Name) - </span>
             }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PastRoles)
+            Past Roles
         </dt>
         <dd>
             @foreach (var role in Model.PastRoles)
             {
-                <span>@Html.DisplayFor(modelItem => role.Name)</span>
+                <span>@Html.DisplayFor(modelItem => role.Name) - </span>
             }
         </dd>
 
     </dl>
+
+    <div class="gutter-top-x2">
+        @Html.ActionLink("Edit", "EmployeeInfoEdit", new { id = Model.EmployeeId }, new { @class = "btn btn-eksponent-border"}) 
+        @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-eksponent-border" })
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "EmployeeInfoEdit", new { id = Model.EmployeeId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="col-md-6 gutter-top">    
+    <img src="~/UploadedFiles/@Model.ProfilePicture" class="img-responsive img-centered img-circle text-center user-profile-picture" />
+</div>

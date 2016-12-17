@@ -51,7 +51,7 @@ namespace Exam_2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,Logo,NextYearlyInterview")] Company company)
+        public ActionResult Create([Bind(Include = "CompanyId,Name,Description,Logo,NextYearlyInterview")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Exam_2016.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,Logo,NextYearlyInterview")] Company company)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,Description,Logo,NextYearlyInterview")] Company company)
         {
             if (ModelState.IsValid)
             {

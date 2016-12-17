@@ -4,16 +4,26 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Role Details</h2>
+<h2 class="page-title">Role Details</h2>
+<hr />
 
-<p>Name: @Html.DisplayFor(modelItem => Model.Name) </p>
-<p>Description: @Html.DisplayFor(modelItem => Model.Description) </p>
+<div class="row role-card gutter-top">
+    <div class="col-md-9">
+        <h3 class="role-title"><b>@Html.DisplayFor(modelItem => Model.Name)</b></h3>
+        <p class="role-description gutter-top-half">@Html.DisplayFor(modelItem => Model.Description) </p>
+    </div>
+    <div class="col-md-3 role-details-actions">
 
-@Html.ActionLink("Add Role to Past Roles", "AddToPastRoles", new { RoleId = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Current Roles", "AddToCurrentRoles", new { RoleId = Model.CompanyRoleId }) |
-@Html.ActionLink("Add Role to Future Roles", "AddToFutureRoles", new { RoleId = Model.CompanyRoleId })
+        @Html.ActionLink("Add to Past Roles", "AddToPastRoles", new { RoleId = Model.CompanyRoleId }, new { @class = "btn btn-role-assign" })
+        @Html.ActionLink("Add to Current Roles", "AddToCurrentRoles", new { RoleId = Model.CompanyRoleId }, new { @class = "btn btn-role-assign" })
+        @Html.ActionLink("Add to Future Roles", "AddToFutureRoles", new { RoleId = Model.CompanyRoleId }, new { @class = "btn btn-role-assign" })
 
-<h3>Employee Experience with Role</h3>
+    </div>
+</div>
+
+
+
+<h3 class="gutter-top"><b>Employee Experience with Role</b></h3>
 
 <table class="table">
     <tr>
@@ -79,7 +89,7 @@
 
 </table>
 
-<h3>Role Curriculum</h3>
+<h3 class="gutter-top"><b>Role Curriculum</b></h3>
 
 <table class="table">
     <tr>
@@ -97,11 +107,11 @@
     }
 </table>
 
-<h2>Add Curriculum To This Role</h2>
+<h3 class="gutter-top"><b>Add Suggested Curriculum To This Role</b></h3>
 
 @using (Html.BeginForm("AddCurriculum", "Roles", FormMethod.Post))
 {
     <input type="hidden" id="RoleId" name="RoleId" value="@Model.CompanyRoleId" />
     <input type="text" id="Curriculum" name="Curriculum" />
-    <input type="submit" value="Add Curriculum" />
+    <input type="submit" value="Add Curriculum" class="btn btn-eksponent-border" />
 }

@@ -3,69 +3,79 @@
     ViewBag.Title = "UserDetail";
 }
 
-<h2>UserDetail</h2>
+<h2 class="page-title">Edit Employee Details</h2>
 
 @using (Html.BeginForm("SaveChanges", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <h4>User Informations</h4>
         <hr />
 
-        
+
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.EmployeeId)
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName)
-                @Html.ValidationMessageFor(model => model.FirstName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName)
-                @Html.ValidationMessageFor(model => model.LastName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Age)
-                @Html.ValidationMessageFor(model => model.Age)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Position, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Position)
-                @Html.ValidationMessageFor(model => model.Position)
+        <div class="col-md-6">
+            <div class="form-group gutter-top">
+                <label class="control-label col-md-4">First Name</label>
+                @*@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" }) 
+                    -- it fetches the the name of the laber from the model which is written together, we want it separately, same for all of them*@
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Score, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Score)
-                @Html.ValidationMessageFor(model => model.Score)
+            <div class="form-group">
+                <label class="control-label col-md-4">Last Name</label>
+                @*@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })*@
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
             </div>
-        </div>
-        @Html.HiddenFor(model => model.ProfilePicture)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Age)
+                    @Html.ValidationMessageFor(model => model.Age)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Position, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Position)
+                    @Html.ValidationMessageFor(model => model.Position)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Score, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Score)
+                    @Html.ValidationMessageFor(model => model.Score)
+                </div>
+            </div>
+            @Html.HiddenFor(model => model.ProfilePicture)
+
+
+            <div class="form-group gutter-top">
+                <div class="col-md-offset-4 col-md-6">
+                    <input type="submit" value="Update" class="btn btn-role-create" />
+                </div>
+            </div>
+
+            <div class="gutter-top-x2">
+                @Html.ActionLink("Back to Home Page", "Index", "", new { @class = "btn btn-eksponent-border" })
+            </div>
+        </div>  
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
+    
 }
+    <div class="col-md-6 gutter-top">
+        <img src="~/UploadedFiles/@Model.ProfilePicture" class="img-responsive img-centered img-circle text-center user-profile-picture" />
+    </div>
 
-<img src="..\\UploadedFiles\\@(Model.ProfilePicture)" />
-
-<div>
-    @Html.ActionLink("Back to Home Page", "Index")
-</div>  
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
