@@ -74,7 +74,7 @@ else
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
             <img src="@Html.DisplayFor(modelItem => company.Logo)" alt="Mountain View" style="width:150px;height:150px;">
-            <p>Welcome to @Html.DisplayFor(modelItem => company.Name).</p>
+            <h2 class="page-title">@Html.DisplayFor(modelItem => company.Name)</h2>
             <p>The next yearly Interview will be held on @Html.DisplayFor(modelItem => company.NextYearlyInterview)</p>
             <h3>Your colleagues:</h3>
             <table class="table">
