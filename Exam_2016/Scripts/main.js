@@ -54,6 +54,14 @@ function handleChartData(data) {
         }
     }
 
+    var iCounter = 0;
+    for (var i = 1; i < aData.length; i++) {
+        iCounter += aData[i][1];
+    }
+    if (iCounter == 0) {
+        aData.push(["No Employees, or no Roles", 1]);
+    }
+
     drawBasic(aData);
 }
 
