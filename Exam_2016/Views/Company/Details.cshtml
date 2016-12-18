@@ -4,55 +4,20 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="page-title">@Html.DisplayFor(model => model.Name)</h2>
+<hr />
 
-<div>
-    <h4>Company</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NextYearlyInterview)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NextYearlyInterview)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompanyId)
-        </dd>
-
-    </dl>
+<div class="container">
+    <img class="col-md-2 company-logo" src="@Html.DisplayFor(model => model.Logo)" alt="Company Logo" />
+    <p class="col-md-7">@Html.DisplayFor(model => model.Description)</p>
+    <div class="col-md-3 company-nyi">
+        <h4>Next Yearly Interview</h4>
+        <p>@Html.DisplayFor(model => model.NextYearlyInterview)</p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |
-    @Html.ActionLink("Back to List", "Index")
+
+
+<p class="container gutter-top">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }, new { @class = "btn btn-eksponent-border"})
+    @Html.ActionLink("Back to List", "Index","", new { @class = "btn btn-eksponent-border" })
 </p>

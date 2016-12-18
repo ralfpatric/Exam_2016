@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="page-title">Edit Company</h2>
+<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Company</h4>
-        <hr />
+    <div class="form-horizontal gutter-top">
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CompanyId)
 
@@ -41,7 +41,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NextYearlyInterview, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Next Yearly Interview</label>
+            @*@Html.LabelFor(model => model.NextYearlyInterview, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NextYearlyInterview, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NextYearlyInterview, "", new { @class = "text-danger" })
@@ -50,12 +51,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Update" class="btn btn-eksponent" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-eksponent-border"})
 </div>

@@ -21,15 +21,19 @@
     {
         <div class="row role-card">
 
-            <div class="col-md-1">
-                COMPANY LOGO
-            </div>
+            @*<div class="col-md-1">
+                <img class="col-md-2 company-logo" src="@Html.DisplayFor(model => model.Logo)" alt="Company Logo" />
 
-            <div class="col-md-9">
+            </div>*@
+
+            <img class="col-md-2 company-index-logo" src="@Html.DisplayFor(modelItem => item.Logo)" alt="Company Logo" />
+
+
+            <div class="col-md-8">
                 <h3 class="role-title">@Html.DisplayFor(modelItem => item.Name) </h3>
             </div>
 
-            <div class="col-md-2 role-actions">
+            <div class="col-md-2 company-index-actions">
                 
                 @Html.ActionLink("Details", "Details", new { id = item.CompanyId }, new { @class="btn btn-eksponent-border" })
                 @Html.ActionLink("Enroll", "BecomePartOfCompany", new { companyId = item.CompanyId }, new { @class = "btn btn-eksponent-border" })
@@ -73,10 +77,18 @@ else
     {
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
-            <img src="@Html.DisplayFor(modelItem => company.Logo)" alt="Mountain View" style="width:150px;height:150px;">
-            <h2 class="page-title">@Html.DisplayFor(modelItem => company.Name)</h2>
-            <p>The next yearly Interview will be held on @Html.DisplayFor(modelItem => company.NextYearlyInterview)</p>
-            <h3>Your colleagues:</h3>
+            <div class="row page-title">
+                <img class="company-logo col-md-2" src="@Html.DisplayFor(modelItem => company.Logo)" alt="Mountain View" >
+                <h2 class="col-md-4">@Html.DisplayFor(modelItem => company.Name)</h2>
+                <div class="col-md-6 company-nyi">
+                    <h4>Next Yearly Interview</h4>
+                    <p>@Html.DisplayFor(modelItem => company.NextYearlyInterview)</p>
+                </div>
+            </div>
+            
+            <hr />
+            
+            <h3 class="gutter-top-x2"><b>Your colleagues</b></h3>
             <table class="table">
                 <tr>
                     <th>
@@ -114,7 +126,7 @@ else
                                     
             </table>
 
-            <h3>List of Roles in @Html.DisplayFor(modelItem => company.Name)</h3>
+            <h3 class="gutter-top-x2"><b>List of Roles in @Html.DisplayFor(modelItem => company.Name)</b></h3>
             <table class="table">
                 <tr>
                     <th>

@@ -4,24 +4,36 @@
     ViewBag.Title = "Chat";
 }
 
-<h2>Chat</h2>
+<h2 class="page-title text-center">Chat</h2>
+<h4 class="gutter-top text-center">Working for a company doesn't revolve only around sitting behind a desk/working for 8 hours. Often times, the colleagues you work with turn into friends.    
+    The chatroom is a place to share all the funny jokes and posts you want.</h4>
+<p class="gutter-top-half text-center">Enjoy!</p>
+<hr />
 
 <div id="time">
 
     @foreach (var item in Model)
     {
-        @Html.DisplayFor(model => item.Time) <text> </text> @Html.DisplayFor(model => item.Name) <text> </text> @Html.DisplayFor(model => item.Message) <br />
+        @*<text> </text>  <text> </text> @Html.DisplayFor(model => item.Message)        @Html.DisplayFor(model => item.Time) <br />*@
+
+
+        <p class="col-md-2"><b>@Html.DisplayFor(model => item.Name)</b></p>
+        <p class="col-md-8">@Html.DisplayFor(model => item.Message)</p>
+        <p class="col-md-2"><i>@Html.DisplayFor(model => item.Time)</i></p>
     }
 
-    <p>-----End of archive-----</p>
+    <p class="text-center">-----End of archive-----</p>
 
 </div>
 
 <form>
     <input id="name" type="text" placeholder="Your name" />
     <input id="msg" type="text" placeholder="Your message" />
-    <input type="submit" />
+    @*<textarea id="msg" placeholder="Your message"></textarea>*@
+    <input class="chat-button" type="submit" />
 </form>
+
+
 
 @section Scripts{
     <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
@@ -30,11 +42,14 @@
         var myHub = $.connection.myHub;
 
         myHub.client.helloJs = function (s) {
-            $("#time").append(s + "<br>");
+            $("#time").append('<p class="text-center gutter-top-half">'+ s + "</p><br>");
         }
 
         myHub.client.message = function (date, name, msg, cid) {
-            $("#time").append(date + " <b>" + name + ":</b> " + msg + "<br>");
+            //$("#time").append(date + " <b>" + name + ":</b> " + msg + "<br>");
+
+            $("#time").append('<p class="col-md-2"><b>'+ name +'</b></p><p class="col-md-7">'+msg+'</p><p class="col-md-3"><i>'+date+'</i></p>');
+
         }
 
         $("form").submit(function (e) {

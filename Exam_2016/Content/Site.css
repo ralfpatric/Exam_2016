@@ -169,6 +169,14 @@ footer > p {
     padding: 30px;
 }
 
+/* -------------------- Chat Page --------------------*/
+.chat-button {
+    background-color: #3f9335;
+    border: 1px solid #3f9335;
+    color: white;
+}
+
+
 /* -------------------- Register Page --------------------*/
 
 .invalid-register > ul {
@@ -299,3 +307,23 @@ footer > p {
     margin: auto;
 }
 
+/* -------------------- Company Index Page --------------------*/
+
+.company-index-actions {
+    margin: 20px 0 20px 0;
+    float: right;
+}
+
+.company-index-logo {
+    width: 100px;
+    margin: 5px 0 5px 0;
+}
+
+.company-logo {
+    width:100px
+}
+
+.company-nyi {
+    float:right;
+    text-align:right;
+}
