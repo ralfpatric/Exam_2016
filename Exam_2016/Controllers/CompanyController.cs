@@ -185,7 +185,7 @@ namespace Exam_2016.Controllers
                 return Json(json);
             }
 
-            return Json(new { id = 2, name = "J" }, JsonRequestBehavior.AllowGet);
+            return Json("{ }", JsonRequestBehavior.AllowGet);
         }
     }
 }
