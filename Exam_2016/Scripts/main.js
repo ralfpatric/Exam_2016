@@ -5,7 +5,7 @@ function drawBasic(aData) {
 
     aData = aData || [['Role','Amount of Employees'],['Loading',24]];
 
-    var data = new google.visualization.arrayToDataTable(aData);
+    var data = google.visualization.arrayToDataTable(aData);
 
     var options = {
         title: 'Employee Role Distribution In The Company'
@@ -32,7 +32,6 @@ function getChartData() {
 
 function handleChartData(data) {
 
-    console.log(data.Employees[0].AllRoles[0].Name);
     aData = [['Role', 'Amount of Employees']];
 
     var rlen = data.Company.Roles.length;
@@ -58,5 +57,7 @@ function handleChartData(data) {
     drawBasic(aData);
 }
 
-getChartData();
+setTimeout(function () {
+    getChartData();
+}, 500);
 
