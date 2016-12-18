@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Exam_2016.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Exam_2016.Controllers
 {
@@ -154,6 +156,36 @@ namespace Exam_2016.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        
+        public ActionResult GenerateChart()
+        {
+            Employee e = db.Employees.Find(User.Identity.GetUserId());
+            if (e.CompanyId != null)
+            {
+                //Fetch employee's company if employee is in a company (companyid is set)
+                Company c = db.Companies.Find((int)e.CompanyId);
+
+                //Create a list of employees to contain the employees associated with the company
+                List<Employee> le = new List<Models.Employee>();
+                foreach(var item in c.Employees)
+                {
+                    le.Add(item);
+                }
+
+                //Create anonymous object, insert company object and the list of employees
+                var v = new { Company = c, Employees = le };
+                
+                //Use JSON.NET to serialize the object to a JSON string. Because we have a many to many relationship, an infinite loop error was thrown
+                //The error was handled by having the serializer ignore loops
+                //However, as no depth variable was provided for when the serializer starts to ignore loops, it did not include the list at all
+                //Because of this, the list is manually created above and an object is created which has the company and its immediate data, and the list of employees (along with their roles)
+                string json = JsonConvert.SerializeObject(v, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
+                return Json(json);
+            }
+
+            return Json(new { id = 2, name = "J" }, JsonRequestBehavior.AllowGet);
         }
     }
 }
