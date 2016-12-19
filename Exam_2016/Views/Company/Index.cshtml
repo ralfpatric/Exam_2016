@@ -78,6 +78,10 @@ else
         if (Model.CurrentEmployee.CompanyId == company.CompanyId)
         {
             <div class="row page-title">
+                @if (company.Admin == Model.CurrentEmployeeStringId)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = company.CompanyId }, new { @class = "btn btn-eksponent-border" })
+                }
                 <img class="company-logo col-md-2" src="@Html.DisplayFor(modelItem => company.Logo)" alt="Mountain View" >
                 <h2 class="col-md-4">@Html.DisplayFor(modelItem => company.Name)</h2>
                 <div class="col-md-6 company-nyi">

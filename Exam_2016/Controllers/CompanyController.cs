@@ -23,7 +23,8 @@ namespace Exam_2016.Controllers
             return View(new CompanyViewModel
             {
                 Companies = db.Companies.ToList(),
-                CurrentEmployee = db.Employees.Find(User.Identity.GetUserId())
+                CurrentEmployee = db.Employees.Find(User.Identity.GetUserId()),
+                CurrentEmployeeStringId = User.Identity.GetUserId()
             });
         }
 
@@ -39,7 +40,14 @@ namespace Exam_2016.Controllers
             {
                 return HttpNotFound();
             }
-            return View(company);
+            //return View(company);
+            return View(new CompanyViewModel
+            {
+                Company = company,
+                CurrentEmployee = db.Employees.Find(User.Identity.GetUserId()),
+                CurrentEmployeeStringId = User.Identity.GetUserId()
+            });
+
         }
 
         // GET: Company/Create
@@ -58,15 +66,16 @@ namespace Exam_2016.Controllers
             if (ModelState.IsValid)
             {
                 var CurrentUserId = User.Identity.GetUserId();
-                company.Admins.Add(CurrentUserId);
+                company.Admin = CurrentUserId;
+                this.db.SaveChanges();
                 Employee employee = db.Employees.Find(User.Identity.GetUserId());
                 company.Employees.Add(employee);
 
-                db.Companies.Add(company);
-                db.SaveChanges();
-
+                this.db.Companies.Add(company);
+                this.db.SaveChanges();
+                var c = this.db.Companies.Find(company.CompanyId);
                 SetEmployeeToCompany(company.CompanyId);
-                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.CurrentCompanyId = company.CompanyId;

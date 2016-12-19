@@ -1,23 +1,29 @@
-﻿@model Exam_2016.Models.Company
+﻿@model Exam_2016.Models.CompanyViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2 class="page-title">@Html.DisplayFor(model => model.Name)</h2>
+<h2 class="page-title">@Html.DisplayFor(model => model.Company.Name)</h2>
 <hr />
 
 <div class="container">
-    <img class="col-md-2 company-logo" src="@Html.DisplayFor(model => model.Logo)" alt="Company Logo" />
-    <p class="col-md-7">@Html.DisplayFor(model => model.Description)</p>
+    <img class="col-md-2 company-logo" src="@Html.DisplayFor(model => model.Company.Logo)" alt="Company Logo" />
+    <p class="col-md-7">@Html.DisplayFor(model => model.Company.Description)</p>
     <div class="col-md-3 company-nyi">
         <h4>Next Yearly Interview</h4>
-        <p>@Html.DisplayFor(model => model.NextYearlyInterview)</p>
+        <p>@Html.DisplayFor(model => model.Company.NextYearlyInterview)</p>
     </div>
 </div>
 
 
 <p class="container gutter-top">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }, new { @class = "btn btn-eksponent-border"})
-    @Html.ActionLink("Back to List", "Index","", new { @class = "btn btn-eksponent-border" })
+    @if (Model.Company.Admin == Model.CurrentEmployeeStringId)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Company.CompanyId }, new { @class = "btn btn-eksponent-border" })
+    }
+
+
+    
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-eksponent-border" })
 </p>
