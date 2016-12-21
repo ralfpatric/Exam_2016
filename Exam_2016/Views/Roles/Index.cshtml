@@ -81,14 +81,11 @@
 
                 @Html.ActionLink("Details", "Details", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions"})
                 @{
-                    foreach (var admin in Model.CurrentCompany.Admins)
+                    if (Model.CurrentCompany.Admin == Model.CurrentEmployee.Id)
                     {
-                        if (admin == Model.CurrentEmployee.Id)
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
-                            @Html.ActionLink("Delete", "Delete", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
-                            }
-                        }
+                        @Html.ActionLink("Edit", "Edit", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                        @Html.ActionLink("Delete", "Delete", new { RoleId = item.CompanyRoleId }, new { @class = "btn btn-role-index-actions" })
+                    }
                 }
 
             </div>
