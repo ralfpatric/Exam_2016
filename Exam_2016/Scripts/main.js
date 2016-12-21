@@ -65,7 +65,7 @@ function handleChartData(data) {
     drawBasic(aData);
 }
 
-setTimeout(function () {
+$(window).load(function () {
     getChartData();
-}, 500);
+});
 
