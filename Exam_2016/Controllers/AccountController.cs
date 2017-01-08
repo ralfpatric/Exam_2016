@@ -152,11 +152,17 @@ namespace Exam_2016.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file.ContentLength > 0)
+                var PfPicName = "";
+
+                if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
                     string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
                     file.SaveAs(_path);
+                    PfPicName = file.FileName;
+                } else
+                {
+                    PfPicName = "default.jpg";
                 }
 
                 //string fullPath = Path.Combine(Server.MapPath("~/UploadedFiles"), Path.GetFileName(file.FileName));
@@ -166,7 +172,16 @@ namespace Exam_2016.Controllers
                 // String RelativePath = AbsolutePath.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty); -- this might work for the relative path, still have to look into it.
 
 
-                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = file.FileName };
+
+                //if (file != null )
+                //{
+                //    pfName = file.FileName;
+                //}else
+                //{
+                //    pfName = "empty";
+                //}
+
+                var user = new Employee { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, ProfilePicture = PfPicName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

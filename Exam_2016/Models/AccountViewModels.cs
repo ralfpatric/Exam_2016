@@ -89,7 +89,7 @@ namespace Exam_2016.Models
         [Display(Name ="Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        
         [StringLength(100, ErrorMessage ="You must upload a profile picture to proceed")]
         [Display(Name ="Profile Picture")]
         public string ProfilePicture { get; set; }
