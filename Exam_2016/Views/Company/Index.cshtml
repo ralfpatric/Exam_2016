@@ -43,33 +43,6 @@
         </div>
     }
 
-    @*<table class="table">
-        <tr>
-            <th>
-               Name
-            </th>
-            <th>
-               Logo
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model.Companies) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Logo)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Assign yourself", "BecomePartOfCompany", new { companyId = item.CompanyId })
-            </td>
-        </tr>
-    }
-
-</table>*@
 }
 else
 {
